@@ -67,6 +67,20 @@ public class Graph {
 		return myGraph;
 		
 	}
+	
+	
+	public String getGraphAsCharString(){
+		
+		String myGraph = null;
+		StringBuilder sb = new StringBuilder();
+		
+		for(Edge edge : edgeList)
+			sb.append((char)('a'+edge.getStartVertex().getVertexName())+"->"+(char)('a'+edge.getEndVertex().getVertexName())+"\n");
+			
+		myGraph = sb.toString();
+		return myGraph;
+		
+	}
 		
 	private void DFSinit(){
 		for(Vertex v : vertexList){
@@ -104,6 +118,16 @@ public class Graph {
 		depthFirst = sb.toString();
 		return depthFirst;
 		
+	}
+	
+	public void transpose() {
+		for(Edge e : edgeList) {
+			Vertex tempStart = e.getStartVertex();
+			Vertex tempEnd = e.getEndVertex();
+			e.setStartVertex(tempEnd);
+			e.setEndVertex(tempStart);
+			
+		}
 	}
 
 

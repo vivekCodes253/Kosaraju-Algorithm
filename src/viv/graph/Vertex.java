@@ -14,6 +14,13 @@ public class Vertex {
 	private boolean visited;
 	private List<Vertex> adjacentList = new ArrayList<>();
 	
+	public void resetAdjacents() {
+		adjacentList = new ArrayList<>();
+	}
+	
+	public boolean hasNoChildren() {
+		return adjacentList.size()==0;
+	}
 	public void addAdjacent(Vertex vertex){
 		adjacentList.add(vertex);
 	}
