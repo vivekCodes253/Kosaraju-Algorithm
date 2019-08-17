@@ -49,6 +49,8 @@ public class Graph {
 	private void addEdge(int i, int j) {
 		Edge edge = new Edge(vertexList.get(i),vertexList.get(j),0);
 		edgeList.add(edge);
+		//Add adjacencies
+		vertexList.get(i).addAdjacent(vertexList.get(j));
 	}
 	
 	
@@ -65,7 +67,68 @@ public class Graph {
 		return myGraph;
 		
 	}
-			
+		
+	private void DFSinit(){
+		for(Vertex v : vertexList){
+			v.setVisited(false);
+		}
+	}
+	
+	public String depthFirstSearch(){
+		
+		return depthFirstSearch(0);
+	}
+	
+	public String depthFirstSearch(int startNode) {
+		DFSinit();	
+		return DFS(startNode);
+	}
+	
+	
+	private String DFS(int startNode)
+	{
+		String depthFirst = "";
+		StringBuilder sb = new StringBuilder();
+		Vertex startVertex = vertexList.get(startNode);
+		startVertex.setVisited(true);
+		sb.append(startNode);
+		//System.out.println(" Entering for "+startNode);
+		for(Vertex child : startVertex.getAdjacentList()) {
+			if(child.isVisited()==false) {
+				//child.setVisited(true);
+				//sb.append(child.getVertexName());
+				sb.append(DFS(child.getVertexName()));
+			}
+		}
+	
+		depthFirst = sb.toString();
+		return depthFirst;
+		
+	}
+
+
+
+	public List<Vertex> getVertexList() {
+		return vertexList;
+	}
+
+
+
+	public void setVertexList(List<Vertex> vertexList) {
+		this.vertexList = vertexList;
+	}
+
+
+
+	public List<Edge> getEdgeList() {
+		return edgeList;
+	}
+
+
+
+	public void setEdgeList(List<Edge> edgeList) {
+		this.edgeList = edgeList;
+	}
 			
 
 	

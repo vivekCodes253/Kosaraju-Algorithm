@@ -1,5 +1,6 @@
 package viv.graph;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex {
@@ -10,8 +11,18 @@ public class Vertex {
 	}
 	
 	private int vertexName;
-	private List<Vertex> adjacentList;
+	private boolean visited;
+	private List<Vertex> adjacentList = new ArrayList<>();
 	
+	public void addAdjacent(Vertex vertex){
+		adjacentList.add(vertex);
+	}
+	public boolean isVisited() {
+		return visited;
+	}
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
 	public int getVertexName() {
 		return vertexName;
 	}
