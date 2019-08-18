@@ -43,20 +43,22 @@ public class KosarajuMain {
 	public static void Kosaraju() {
 	
 		//forward traverse
-		System.out.println(depthFirstSearch(1,true));//update stack as one finishes
+		//System.out.println(depthFirstSearch(1,true));//update stack as one finishes
+		depthFirstSearch(1,true);
 		//transpose
 		transposeGraph();
-		//display
-		//System.out.println(graph.getGraphAsCharString());
-		//reverse traverse
-		System.out.println("Doing reverse");
+		
+		//System.out.println("Doing reverse");
 		DFSinit();
+		int clusterCount=0;
 		while(unvisitedNodesExist()) {
 			
 			if(!vertexList.get(stack.peek()).isVisited())
 			{
-				System.out.println("Stack top is "+stack.peek());
-				System.out.println(depthFirstSearch(stack.pop(),false));
+				System.out.print("Cluster "+(++clusterCount)+" : ");
+				//System.out.println("Stack top is "+stack.peek());
+				System.out.println(graph.alphabetParse(depthFirstSearch(stack.pop(),false)));
+				//System.out.println(graph.alphabetParse(depthFirstSearch(stack.pop(),false)));
 			}
 			else
 				stack.pop();
@@ -125,9 +127,9 @@ public class KosarajuMain {
 	
 	public static int getNextUnvisitedNode() {
 		for(Vertex vertex : vertexList) {
-			System.out.println("Tracking "+(char)('a'+vertex.getVertexName()));
+			//System.out.println("Tracking "+(char)('a'+vertex.getVertexName()));
 			if(!vertex.isVisited()) {
-				System.out.println("Exitting at "+(char)('a'+vertex.getVertexName()));
+				//System.out.println("Exitting at "+(char)('a'+vertex.getVertexName()));
 				return vertex.getVertexName();
 			}
 		}
@@ -167,11 +169,11 @@ public class KosarajuMain {
 			}
 			if(checkAllElements) {	//only for forward case, no pushing for reverse case
 				if(child.hasNoChildren()) {
-					System.out.println("Pushing " + (char)('a'+child.getVertexName()));
+					//System.out.println("Pushing " + (char)('a'+child.getVertexName()));
 					stack.push(child.getVertexName());
 				}
 				if(allChildrenVisited(startVertex)) {
-					System.out.println("Pushing " + (char)('a'+startVertex.getVertexName()));
+					//System.out.println("Pushing " + (char)('a'+startVertex.getVertexName()));
 					stack.push(startVertex.getVertexName());
 					break;
 				}

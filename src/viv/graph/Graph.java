@@ -129,6 +129,22 @@ public class Graph {
 			
 		}
 	}
+	
+	
+	public String alphabetParse(String input) {
+		return alphabetParse(input, 'a');
+	}
+	
+	public String alphabetParse(String input,char startingCharacter) {
+		StringBuilder sb = new StringBuilder();
+		String[] components = input.split(" ");
+		
+		for(String vertex : components) {
+			sb.append((char)(Integer.valueOf(vertex)+'a') + " ");
+		}
+		
+		return sb.toString();
+	}
 
 
 
